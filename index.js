@@ -59,14 +59,14 @@ client.on('message', (message) => {
     let commandList = [
       {name: '!help', desc: '도움말'},
       {name: '!테스트', desc: '서버 테스트'},
-      {name: '!???', desc: '엄청나다!'},
+      {name: '!?????', desc: '엄청나다!'},
       {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: '다른 형식으로 공지 보내기'},
       {name: '!청소', desc: '채팅 청소'},
       {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
-      {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
+      {name: '!초대코드2', desc: '봇이 있는 채널의 초대 코드 표기'}, 
     ];
-    let commandStr = '';
+      let commandStr = '';
     let embed = new Discord.RichEmbed()
       .setAuthor('무엇을 도와드릴까요?', helpImg)
       .setColor('#186de6')
@@ -122,9 +122,9 @@ client.on('message', (message) => {
         x.user.send(embed)
       });
   
-      return message.reply('공지를 전송했습니다.');
+      return message.reply('공지를 확인해주세요!');
     } else {
-      return message.reply('채널에서 실행해주세요.');
+      return message.reply('채널에서 실행해주세요!');
     }
   } else if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
@@ -135,9 +135,9 @@ client.on('message', (message) => {
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('공지를 전송했습니다.');
+      return message.reply('공지를 확인해주세요!');
     } else {
-      return message.reply('채널에서 실행해주세요.');
+      return message.reply('채널에서 실행해주세요!');
     }
   } else if(message.content.startsWith('!청소')) {
     if(message.channel.type == 'dm') {
@@ -150,7 +150,7 @@ client.on('message', (message) => {
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요!")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
