@@ -33,7 +33,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '!테스트') {
-    return message.reply('서버가 작동합니다!');
+    return message.reply('서버가 잘 작동합니다!');
   }
 
   if(message.content == 'embed') {
