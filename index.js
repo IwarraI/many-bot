@@ -1,10 +1,19 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
+
 const welcomeChannelName = "어서오세요";
 const byeChannelName = "잘가세요";
 const welcomeChannelComment = "오신 것을 환영합니다!";
 const byeChannelComment = "즐거웠어요! 그럼 안녕히가세요!";
+
+const moment = require("moment");
+require("moment-duration-format");
+const welcomeChannelName = "안녕하세요";
+const byeChannelName = "안녕히가세요";
+const welcomeChannelComment = "어서오세요.";
+const byeChannelComment = "안녕히가세요.";
+
 
 client.on('ready', () => {
   console.log('켜졌습니다.');
@@ -35,6 +44,9 @@ client.on('message', (message) => {
   if(message.content == '!테스트') {
     return message.reply('작동됩니다!');
   }
+
+    embed.setTimestamp()
+    message.channel.send(embed);
 
   if(message.content == '!이터스그에') {
     let img = 'https://cdn.discordapp.com/attachments/719469621341716504/719505553176657980/d83fddf8036e7dd8.PNG';
@@ -178,7 +190,6 @@ client.on('message', (message) => {
         .catch(console.error)
     }
   }
-});
 
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
