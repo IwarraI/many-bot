@@ -1,14 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
-const welcomeChannelName = "안녕하세요";
-const byeChannelName = "안녕히가세요";
-const welcomeChannelComment = "어서오세요.";
-const byeChannelComment = "안녕히가세요.";
+const welcomeChannelName = "어서오세요";
+const byeChannelName = "잘가세요";
+const welcomeChannelComment = "어서오세요! 함께하게 되신걸 축하드립니다!";
+const byeChannelComment = "즐거웠습니다! 안녕히가세요~";
 
 client.on('ready', () => {
   console.log('켰다.');
-  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
+  client.user.setPresence({ game: { name: '메니봇/!help' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -18,7 +18,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "게스트"));
+  member.addRole(guild.roles.find(role => role.name == "유저"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -58,7 +58,7 @@ client.on('message', (message) => {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!help', desc: 'help'},
-      {name: 'ping', desc: '현재 핑 상태'},
+      {name: 'ping', desc: '서버 테스트'},
       {name: 'embed', desc: 'embed 예제1'},
       {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
       {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
