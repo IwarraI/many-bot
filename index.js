@@ -32,43 +32,43 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == 'ping') {
-    return message.reply('pong');
+  if(message.content == '!테스트') {
+    return message.reply('서버가 작동합니다!');
   }
 
   if(message.content == 'embed') {
-    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
+    let img = 'https://cdn.discordapp.com/attachments/719469621341716504/719505553176657980/d83fddf8036e7dd8.PNG';
     let embed = new Discord.RichEmbed()
-      .setTitle('타이틀')
+      .setTitle('포켓몬이다!')
       .setURL('http://www.naver.com')
-      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setAuthor('와카츄가 나타났다!', img, 'http://www.naver.com')
       .setThumbnail(img)
       .addBlankField()
-      .addField('Inline field title', 'Some value here')
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here', true)
-      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
+      .addField('설명:', '나는 와카츄다')
+      .addField('설명:', '아이엠 와카츄', true)
+      .addField('설명:', '오레와 와카츄', true)
+      .addField('설명:', '기술이 너무 많다!!!', true)
+      .addField('설명:', '구하기 가장 어려운 초 희귀 포켓몬!!!')
       .addBlankField()
       .setTimestamp()
-      .setFooter('나긋해가 만듬', img)
+      .setFooter('전설의 포켓몬이다!!', img)
 
     message.channel.send(embed)
   } else if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
-      {name: '!help', desc: 'help'},
-      {name: 'ping', desc: '서버 테스트'},
-      {name: 'embed', desc: 'embed 예제1'},
+      {name: '!help', desc: '도움말'},
+      {name: '!테스트', desc: '서버 테스트'},
+      {name: '!???', desc: '엄청나다!'},
       {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
-      {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
-      {name: '!청소', desc: '텍스트 지움'},
+      {name: '!전체공지2', desc: '다른 형식으로 공지 보내기'},
+      {name: '!청소', desc: '채팅 청소'},
       {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
       {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('무엇을 도와드릴까요', helpImg)
+      .setAuthor('무엇을 도와드릴까요?', helpImg)
       .setColor('#186de6')
       .setFooter(`메니봇`)
       .setTimestamp()
