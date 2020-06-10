@@ -1,16 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = process.argv.length == 2 ? process.env.token : "";
-const welcomeChannelName = "어서오세요";
-const byeChannelName = "잘가세요";
-const welcomeChannelComment = "오신 것을 환영합니다!";
-const byeChannelComment = "즐거웠어요! 그럼 안녕히가세요!";
-const moment = require("moment");
-require("moment-duration-format");
+const welcomeChannelName = "안녕하세요";
+const byeChannelName = "안녕히가세요";
+const welcomeChannelComment = "어서오세요.";
+const byeChannelComment = "안녕히가세요.";
 
 client.on('ready', () => {
-  console.log('켜졌습니다.');
-  client.user.setPresence({ game: { name: '메니봇/!help' }, status: 'online' })
+  console.log('켰다.');
+  client.user.setPresence({ game: { name: '!help를 쳐보세요.' }, status: 'online' })
 });
 
 client.on("guildMemberAdd", (member) => {
@@ -20,7 +18,7 @@ client.on("guildMemberAdd", (member) => {
 
   welcomeChannel.send(`<@${newUser.id}> ${welcomeChannelComment}\n`);
 
-  member.addRole(guild.roles.find(role => role.name == "유저"));
+  member.addRole(guild.roles.find(role => role.name == "게스트"));
 });
 
 client.on("guildMemberRemove", (member) => {
@@ -34,36 +32,43 @@ client.on("guildMemberRemove", (member) => {
 client.on('message', (message) => {
   if(message.author.bot) return;
 
-  if(message.content == '!테스트') {
-    return message.reply('서버가 작동됩니다!');
+  if(message.content == 'ping') {
+    return message.reply('pong');
   }
 
-   if(message.content = '!이터스그에') 
-    let img = 'https://cdn.discordapp.com/attachments/719469621341716504/719505553176657980/d83fddf8036e7dd8.PNG';
+  if(message.content == 'embed') {
+    let img = 'https://cdn.discordapp.com/icons/419671192857739264/6dccc22df4cb0051b50548627f36c09b.webp?size=256';
     let embed = new Discord.RichEmbed()
-      .addField('설명', '若衆です', true)
-      .addField('설명', '我是瓦卡丘', true)
-      .addField('설명', 'أنا واكاتشو')
+      .setTitle('타이틀')
+      .setURL('http://www.naver.com')
+      .setAuthor('나긋해', img, 'http://www.naver.com')
+      .setThumbnail(img)
+      .addBlankField()
+      .addField('Inline field title', 'Some value here')
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here', true)
+      .addField('Inline field title', 'Some value here1\nSome value here2\nSome value here3\n')
       .addBlankField()
       .setTimestamp()
-      .setFooter('포켓몬이 나타났다!!', img)
+      .setFooter('나긋해가 만듬', img)
 
     message.channel.send(embed)
-    if(message.content == '!help') {
+  } else if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!help', desc: 'help'},
-      {name: '!테스트', desc: '코드 변경 후 테스트'},
-      {name: '?!?!?', desc: '2@%$@ter@!#$#@!스!@@#$ge!#@$$@!e!@#!#$'},
-      {name: '!전체공지', desc: '공지를 보냅니다'},
-      {name: '!전체공지2', desc: '다른 형식으로 공지를 보냅니다'},
-      {name: '!청소', desc: '채팅을 청소합니다'},
-      {name: '!초대코드', desc: '현재 채널 표기'},
-      {name: '!초대코드2', desc: '현재 채널 표기'},
+      {name: 'ping', desc: '현재 핑 상태'},
+      {name: 'embed', desc: 'embed 예제1'},
+      {name: '!전체공지', desc: 'dm으로 전체 공지 보내기'},
+      {name: '!전체공지2', desc: 'dm으로 전체 embed 형식으로 공지 보내기'},
+      {name: '!청소', desc: '텍스트 지움'},
+      {name: '!초대코드', desc: '해당 채널의 초대 코드 표기'},
+      {name: '!초대코드2', desc: '봇이 들어가있는 모든 채널의 초대 코드 표기'},
     ];
     let commandStr = '';
     let embed = new Discord.RichEmbed()
-      .setAuthor('무엇을 도와드릴까요?', helpImg)
+      .setAuthor('무엇을 도와드릴까요', helpImg)
       .setColor('#186de6')
       .setFooter(`메니봇`)
       .setTimestamp()
@@ -117,9 +122,9 @@ client.on('message', (message) => {
         x.user.send(embed)
       });
   
-      return message.reply('전송되었습니다!');
+      return message.reply('공지를 전송했습니다.');
     } else {
-      return message.reply('채널에서 실행해주세요');
+      return message.reply('채널에서 실행해주세요.');
     }
   } else if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
@@ -130,9 +135,9 @@ client.on('message', (message) => {
         x.user.send(`<@${message.author.id}> ${contents}`);
       });
   
-      return message.reply('전송되었습니다!.');
+      return message.reply('공지를 전송했습니다.');
     } else {
-      return message.reply('채널에서 실행해주세요');
+      return message.reply('채널에서 실행해주세요.');
     }
   } else if(message.content.startsWith('!청소')) {
     if(message.channel.type == 'dm') {
@@ -145,7 +150,7 @@ client.on('message', (message) => {
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
-      message.channel.send("1부터 100까지의 숫자만 입력해주세요!")
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
       return;
     } else if(!isNum) { // c @나긋해 3
       if(message.content.split('<@').length == 2) {
