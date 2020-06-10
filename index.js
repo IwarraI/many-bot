@@ -5,6 +5,8 @@ const welcomeChannelName = "어서오세요";
 const byeChannelName = "잘가세요";
 const welcomeChannelComment = "오신 것을 환영합니다!";
 const byeChannelComment = "즐거웠어요! 그럼 안녕히가세요!";
+const moment = require("moment");
+require("moment-duration-format");
 
 client.on('ready', () => {
   console.log('켜졌습니다.');
@@ -36,16 +38,9 @@ client.on('message', (message) => {
     return message.reply('작동됩니다!');
   }
 
-  if(message.content == '!이터스그에') {
+   if(message.content = '!이터스그에') 
     let img = 'https://cdn.discordapp.com/attachments/719469621341716504/719505553176657980/d83fddf8036e7dd8.PNG';
     let embed = new Discord.RichEmbed()
-      .setTitle('야생의 포켓몬')
-      .setURL('http://www.naver.com')
-      .setAuthor('와카츄', img, 'http://www.naver.com')
-      .setThumbnail(img)
-      .addBlankField()
-      .addField('설명', '나는 와카츄다')
-      .addField('설명', 'i am wakachu',true)
       .addField('설명', '若衆です', true)
       .addField('설명', '我是瓦卡丘', true)
       .addField('설명', 'أنا واكاتشو')
@@ -54,7 +49,7 @@ client.on('message', (message) => {
       .setFooter('포켓몬이 나타났다!!', img)
 
     message.channel.send(embed)
-  } else if(message.content == '!help') {
+    if(message.content == '!help') {
     let helpImg = 'https://images-ext-1.discordapp.net/external/RyofVqSAVAi0H9-1yK6M8NGy2grU5TWZkLadG-rwqk0/https/i.imgur.com/EZRAPxR.png';
     let commandList = [
       {name: '!help', desc: 'help'},
