@@ -35,7 +35,7 @@ client.on('message', (message) => {
   if(message.author.bot) return;
 
   if(message.content == '!테스트') {
-    return message.reply('작동됩니다!');
+    return message.reply('서버가 작동됩니다!');
   }
 
    if(message.content = '!이터스그에') 
